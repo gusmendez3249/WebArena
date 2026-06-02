@@ -134,3 +134,115 @@ You have made it till the end. Kudos to you!!
 </tbody></table>
 <hr>
 
+# Student Contribution
+
+## Developer Information
+
+- Name: Juan Gustavo Ángel Cruz Méndez
+- University: Universidad Tecnológica del Norte de Guanajuato
+- Date: 01/06/2026
+
+## Proposed Improvements
+
+1. **Automatización del Inicio del Servicio**: Configurar el servicio de MySQL (ya sea mediante Servicios de Windows, XAMPP o Laragon) para que se inicie automáticamente con el sistema. Esto garantiza que el motor de la base de datos esté disponible siempre que se abra el IDE, evitando errores de conexión fallida.
+2. **Política de Gestión de Credenciales**: Utilizar la función "Store in Vault" para entornos de desarrollo local para agilizar el flujo de trabajo. Para entornos de producción, implementar una política de entrada manual o mediante variables de entorno para mejorar la seguridad.
+3. **Aislamiento de Entornos**: Organizar las conexiones utilizando la función de grupos de MySQL Workbench y aplicar códigos de colores distintos (por ejemplo, verde para local, rojo para producción) para minimizar el riesgo de modificaciones accidentales en entornos equivocados.
+
+## Observations
+
+La fase de configuración inicial reveló que el fallo principal de conexión fue causado por la ausencia de un motor de base de datos activo, confirmando que **MySQL Workbench** opera estrictamente como una interfaz de cliente. Los errores posteriores de "Acceso Denegado" resaltaron la importancia de distinguir entre las configuraciones de credenciales predeterminadas (como la política de contraseña vacía en XAMPP/Laragon) y los requisitos obligatorios de contraseña del instalador oficial de MySQL Server. Las pruebas finales confirmaron que, una vez que el servicio está activo en el puerto `3306` con las credenciales correspondientes, la conexión se mantiene estable.
+
+## Project Strengths
+
+* **Enfoque Arquitectónico Sólido (MVVM & API-First):** La adopción del patrón de diseño *Model-View-ViewModel* (estándar oficial de Google para Android) garantiza una clara separación de responsabilidades entre la lógica de negocio y la interfaz de usuario, facilitando la escalabilidad, la mantenibilidad y las pruebas unitarias. Al ser una arquitectura API-first, desacopla de forma eficiente el cliente móvil del backend, permitiendo la futura expansión hacia otras plataformas del ecosistema (Wearables, Smart TV, etc.).
+* **Gestión Eficiente de Red e Infraestructura de Consumo:** La integración de **Retrofit** para el consumo de la API REST proporciona un tipado estricto y una gestión óptima de las peticiones HTTP, complementada con el requisito obligatorio de seguridad mediante tokens de acceso **JWT** y cifrado **HTTPS** para mitigar ataques de interceptación (MitM).
+* **Inclusión de Streaming de Video de Alta Calidad:** La incorporación del protocolo **HLS Adaptativo (HTTP Live Streaming)** operado a través de **ExoPlayer** demuestra un diseño moderno y pensado en la experiencia de usuario, adaptando la resolución del contenido audiovisual automáticamente en función del ancho de banda disponible del dispositivo móvil.
+* **Estrategia de Preservación e Interactividad Cultural:** A diferencia de las aplicaciones convencionales de eventos que solo venden boletos, FestivalTrack aporta un valor agregado diferenciador mediante la implementación de un *Fragment* de Biografía Interactiva enfocado en el impacto histórico y cultural de José Alfredo Jiménez (multimedia con galerías y reproductores de audio nativos con tiempos de carga optimizados menores a 3 segundos).
+* **Seguridad y Control de Acceso mediante Códigos QR:** La automatización de la venta de boletos asociada a la generación dinámica de un Token visual (Código QR) proporciona un mecanismo robusto, transparente y ágil tanto para el usuario como para el personal del festival en los controles de acceso físicos del recinto (Mausoleo).
+
+---
+
+## Improvement Opportunities
+
+* **Definición de Almacenamiento Local (Persistencia Caching):** El documento menciona resiliencia del backend y reconexión automática ante la pérdida de señal, pero no define formalmente una base de datos local embebida en el cliente Android (como **Room SQL** o **DataStore**). Es crítico estructurar una estrategia *Offline-First* para que los usuarios puedan consultar sus boletos (códigos QR) y la agenda previamente descargada cuando se encuentren en áreas de alta densidad o nula conectividad en el festival.
+* **Transición y Unificación del Stack Tecnológico de UI:** El glosario y las descripciones mencionan la coexistencia de `Activity`, `Fragment` y la combinación de lenguajes `Kotlin / Java`. Se recomienda encarecidamente migrar y unificar el desarrollo hacia **Jetpack Compose** (desarrollo declarativo de UI moderno) y usar exclusivamente Kotlin para eliminar el código heredado, evitar la sobrecarga de inflar vistas XML y reducir la complejidad del ciclo de vida que implican los Fragments tradicionales.
+* **Detalle en la Escalabilidad y Robustez del Panel de Administración:** La HU-05 establece que el administrador puede subir archivos multimedia directamente desde la app móvil. Esto puede generar cuellos de botella en dispositivos móviles debido al ancho de banda de subida. Una mejor práctica sería delimitar el Panel de Administración como una plataforma web independiente o especificar librerías de compresión/procesamiento asíncrono en segundo plano (**WorkManager**) dentro de la aplicación móvil.
+* **Especificación de la Pasarela de Pagos:** La HU-02 detalla que los boletos se adquieren mediante una "pasarela segura", pero no detalla el proveedor técnico (e.g., Stripe SDK, PayPal SDK o Mercado Pago SDK). Definir formalmente los requerimientos de cumplimiento (PCI-DSS) y las librerías específicas evitará complicaciones en etapas avanzadas de desarrollo.
+* **Estrategia Exhaustiva de Pruebas (Testing):** No se visualizan requerimientos o arquitecturas destinadas a la verificación de software. Se sugiere incorporar al alcance arquitectónico la definición de pruebas unitarias (JUnit, Mockk) para los ViewModels y casos de uso, así como pruebas de interfaz de usuario automatizadas (Espresso) para los flujos críticos de autenticación y checkout de boletos.
+
+## 3. Tabla de Tecnologías Utilizadas
+
+A continuación se consolidan las herramientas, lenguajes, protocolos y librerías clave que componen el ecosistema de **FestivalTrack** según la documentación técnica provista:
+
+| Componente / Capa | Tecnología | Tipo / Propósito | Descripción Técnica |
+| :--- | :--- | :--- | :--- |
+| **Entorno de Desarrollo** | Android Studio | IDE Oficial | Entorno de desarrollo integrado para la codificación y emulación del sistema Android. |
+| **Lenguajes de Programación**| Kotlin / Java | Lenguajes de Software | Stack mixto nativo para la estructuración de la lógica de negocio y componentes de UI. |
+| **Arquitectura de Software** | MVVM | Patrón Arquitectónico | *Model-View-ViewModel* para separación de vistas, flujos de datos reactivos y lógica. |
+| **Consumo de APIs** | Retrofit | Librería HTTP Client | Cliente seguro de tipo *Type-safe* para interactuar con los endpoints del backend REST. |
+| **Reproducción de Video** | ExoPlayer / HLS | Reproductor Multimedia | API multimedia nativa compatible con streaming adaptivo basado en el ancho de banda. |
+| **Autenticación** | JWT (JSON Web Tokens) | Protocolo de Seguridad | Tokens firmados digitalmente para la persistencia e identificación segura de sesiones. |
+| **Cifrado de Red** | HTTPS | Protocolo de Red | Capa de sockets seguros encargada de encriptar el tráfico de datos cliente-servidor. |
+| **Validación Física** | Código QR | Token Visual | Matriz de puntos bidimensional para verificación automatizada en accesos del evento. |
+
+---
+
+## 4. Diagrama de Arquitectura
+
+El siguiente flujo describe la arquitectura limpia implementada bajo el patrón MVVM y el consumo de servicios web externos en la aplicación Android:
+
++---------------------------------------------------------------------------------+
+|                                APLICACIÓN ANDROID                               |
+|                                                                                 |
+|  +--------------------------- Capa de Presentación --------------------------+  |
+|  |                                                                           |  |
+|  |   [ Vistas Nativas ] <--- (Observa Estado / Data Binding) ------------+   |  |
+|  |   (Activities / Fragments / Compose UI)                               |   |  |
+|  |                                                                       |   |  |
+|  +-----------------------------------------------------------------------|---+  |
+|                                                                          v      |
+|  +--------------------------- Capa de Negocio -------------------------------+  |
+|  |                                                                           |  |
+|  |   [ ViewModels ]                                                          |  |
+|  |   (Maneja el estado de la UI y los eventos del usuario)                   |  |
+|  |                                                                           |  |
+|  |   [ Repository Pattern ]                                                  |  |
+|  |   (Abstracción y decisión de la fuente de datos: Local o Remota)          |  |
+|  |                                                                           |  |
+|  +-----------------------------------------------------------------------|---+  |
+|                                                                          v      |
+|  +--------------------------- Capa de Datos ---------------------------------+  |
+|  |                                                                           |  |
+|  |   [ Retrofit API Client ] ----(Mapeo de Datos DTO)                     |  |
+|  |                                                                           |  |
+|  +-------------------------------------+-------------------------------------+  |
++----------------------------------------|----------------------------------------+
+|
+(HTTPS / JWT)
+v
++---------------------------------------------------------------------------------+
+|                             SERVICIOS EXTERNOS / BACKEND                        |
+|                                                                                 |
+|   +-----------------------+   +------------------------+   +----------------+   |
+|   |   API Gateway REST    |   | HLS Video Server (CDN) |   | Pasarela Pago  |   |
+|   |   (Endpoints Backend) |   | (Streaming ExoPlayer)  |   | (Tokenización) |   |
+|   +-----------------------+   +------------------------+   +----------------+   |
++---------------------------------------------------------------------------------+
+
+
+---
+
+## 5. Requerimientos Funcionales (10 Requerimientos)
+
+Los requerimientos funcionales detallan el comportamiento específico que el sistema debe ejecutar de manera explícita:
+
+* **RF-01 (Gestión de Cuentas):** El sistema debe permitir a los visitantes registrar una cuenta nueva mediante un correo electrónico válido y una contraseña con criterios mínimos de seguridad.
+* **RF-02 (Inicio de Sesión):** El sistema debe validar las credenciales de los usuarios mediante tokens JWT a través de HTTPS para otorgar acceso a las funciones extendidas de la aplicación.
+* **RF-03 (Búsqueda y Compra de Boletos):** El sistema debe permitir al usuario seleccionar una fecha del festival, una categoría de asiento, la cantidad de boletos y procesar el pago a través de la pasarela integrada.
+* **RF-04 (Generación de Códigos QR):** Tras una transacción bancaria exitosa, el sistema debe generar automáticamente un boleto electrónico en formato de código QR único vinculado a la cuenta del usuario.
+* **RF-05 (Consulta de Agenda/Horarios):** El sistema debe desplegar un listado cronológico interactivo que muestre los horarios de las presentaciones, artistas invitados y ubicaciones exactas de los escenarios (e.g., Mausoleo).
+* **RF-06 (Streaming en Vivo):** El sistema debe reproducir la señal streaming de video en directo del festival mediante ExoPlayer consumiendo el protocolo HLS, garantizando calidad dinámica según la red del usuario.
+* **RF-07 (Navegación Biográfica Interactiva):** El sistema debe renderizar una línea de tiempo interactiva que incluya textos históricos, galerías de imágenes y controles de reproducción para archivos de audio dedicados al legado de José Alfredo Jiménez.
+* **RF-08 (Carga de Archivos de Administrador):** El sistema debe proveer una interfaz exclusiva para cuentas con rol de administrador que les permita cargar archivos de música, fotografías y textos informativos directamente al servidor de contenidos.
+* **RF-09 (Notificaciones Push en Tiempo Real):** El sistema debe emitir alertas instantáneas a los dispositivos de los usuarios informando sobre cambios repentinos en la programación, eventos por comenzar o avisos de protección civil.
+* **RF-10 (Historial de Compras Digitales):** El sistema debe almacenar y desplegar un módulo de consulta privada donde el usuario visualice sus transacciones pasadas, estado de pagos y boletos activos o expirados.
