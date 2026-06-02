@@ -188,9 +188,13 @@ A continuación se consolidan las herramientas, lenguajes, protocolos y librerí
 ---
 
 ## 4. Diagrama de Arquitectura
+---
 
-El siguiente flujo describe la arquitectura limpia implementada bajo el patrón MVVM y el consumo de servicios web externos en la aplicación Android:
+### 🏛️ 7. Arquitectura del Sistema (MVVM & Clean Architecture)
 
+El siguiente flujo describe la arquitectura limpia implementada bajo el patrón MVVM y el flujo de comunicación asíncrona para el consumo de servicios web externos en la aplicación Android:
+
+```text
 +---------------------------------------------------------------------------------+
 |                                APLICACIÓN ANDROID                               |
 |                                                                                 |
@@ -217,9 +221,9 @@ El siguiente flujo describe la arquitectura limpia implementada bajo el patrón 
 |  |                                                                           |  |
 |  +-------------------------------------+-------------------------------------+  |
 +----------------------------------------|----------------------------------------+
-|
-(HTTPS / JWT)
-v
+                                         |
+                                   (HTTPS / JWT)
+                                         v
 +---------------------------------------------------------------------------------+
 |                             SERVICIOS EXTERNOS / BACKEND                        |
 |                                                                                 |
@@ -228,8 +232,7 @@ v
 |   |   (Endpoints Backend) |   | (Streaming ExoPlayer)  |   | (Tokenización) |   |
 |   +-----------------------+   +------------------------+   +----------------+   |
 +---------------------------------------------------------------------------------+
-
-
+```
 ---
 
 ## 5. Requerimientos Funcionales (10 Requerimientos)
@@ -246,3 +249,57 @@ Los requerimientos funcionales detallan el comportamiento específico que el sis
 * **RF-08 (Carga de Archivos de Administrador):** El sistema debe proveer una interfaz exclusiva para cuentas con rol de administrador que les permita cargar archivos de música, fotografías y textos informativos directamente al servidor de contenidos.
 * **RF-09 (Notificaciones Push en Tiempo Real):** El sistema debe emitir alertas instantáneas a los dispositivos de los usuarios informando sobre cambios repentinos en la programación, eventos por comenzar o avisos de protección civil.
 * **RF-10 (Historial de Compras Digitales):** El sistema debe almacenar y desplegar un módulo de consulta privada donde el usuario visualice sus transacciones pasadas, estado de pagos y boletos activos o expirados.
+
+## 📁 6. Evidencias del Proceso
+
+A continuación, se detallan las capturas de pantalla que validan el flujo de trabajo realizado en el proyecto **WebArena**.
+
+---
+
+###  Configuración del Repositorio
+**Captura del Fork creado**  
+Se realizó la bifurcación del repositorio base para iniciar el entorno de desarrollo personalizado.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/f8cd0a94-ce5a-4193-9d45-51cc1968d2e7" alt="Fork del repositorio" width="90%">
+</p>
+
+---
+
+### 💻 Operaciones en Terminal (Git CLI)
+
+> [!IMPORTANT]
+> Se verificó la conexión con los repositorios remotos (`origin` y `upstream`) y la gestión de ramas locales.
+
+#### **I. Configuración de Remotos (`git remote -v`)**
+<img src="https://github.com/user-attachments/assets/2d1527d2-828a-4f5e-84aa-a5c40094be7a" alt="Git Remote" width="80%">
+
+#### **II. Estado de Ramas (`git branch`)**
+<img src="https://github.com/user-attachments/assets/54768a8d-f327-407a-902f-5584f76e46ae" alt="Git Branch" width="80%">
+
+#### **III. Historial de Cambios (`git log --oneline`)**
+<img src="https://github.com/user-attachments/assets/b9defeb9-c62a-4388-8211-f6111df3fbaa" alt="Git Log" width="90%">
+
+---
+
+### 🚀 Colaboración y Entrega (Pull Request)
+
+**Captura del Pull Request**  
+Evidencia del envío de contribuciones desde la rama `dev` hacia el repositorio principal.
+
+<img src="https://github.com/user-attachments/assets/e63c0fcd-30b9-49b0-85d0-9031446d597e" alt="Pull Request Screenshot" width="100%">
+
+**Enlace de seguimiento:**  
+🔗 [Consultar Pull Request en GitHub](https://github.com/gusmendez3249/WebArena/pull/1#issue-4567640241)
+
+---
+
+## 👥 Team Members
+
+| Nombre Completo | Rol / Responsabilidad |
+| :--- | :--- |
+| **Chavero Martínez Noe** | Ingeniero de Software |
+| **Cruz Méndez Juan Gustavo** | Ingeniero de Software |
+| **Salinas Salinas Omar** | Ingeniero de Software |
+
+---
